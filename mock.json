@@ -1,0 +1,425 @@
+{
+  "user": {
+    "name": "Felipe",
+    "full": "Felipe Andrade",
+    "email": "felipe@email.com",
+    "initials": "FA"
+  },
+  "month": "Outubro 2026",
+  "balance": 24580.4,
+  "income": 12400,
+  "expenses": 7862.35,
+  "savings": 4537.65,
+  "accounts": [
+    {
+      "bank": "nubank",
+      "name": "Nubank",
+      "type": "Conta corrente",
+      "balance": 8240.1,
+      "sync": "há 5 min"
+    },
+    {
+      "bank": "itau",
+      "name": "Itaú",
+      "type": "Conta corrente",
+      "balance": 12905.3,
+      "sync": "há 12 min"
+    },
+    {
+      "bank": "inter",
+      "name": "Inter",
+      "type": "Conta digital",
+      "balance": 3435,
+      "sync": "há 1 h"
+    }
+  ],
+  "cards": [
+    {
+      "bank": "Nubank",
+      "key": "nubank",
+      "name": "Ultravioleta",
+      "last4": "4821",
+      "invoice": 2184.9,
+      "limit": 12000,
+      "due": "15/10",
+      "close": "08/10",
+      "theme": "black"
+    },
+    {
+      "bank": "Itaú",
+      "key": "itau",
+      "name": "Visa Infinite",
+      "last4": "7310",
+      "invoice": 1326.4,
+      "limit": 8000,
+      "due": "20/10",
+      "close": "13/10",
+      "theme": "graphite"
+    },
+    {
+      "bank": "Inter",
+      "key": "inter",
+      "name": "Mastercard Gold",
+      "last4": "0954",
+      "invoice": 412,
+      "limit": 3000,
+      "due": "10/10",
+      "close": "03/10",
+      "theme": "silver"
+    }
+  ],
+  "categories": [
+    {
+      "k": "moradia",
+      "v": 2450,
+      "budget": 2500
+    },
+    {
+      "k": "alimentacao",
+      "v": 1684.2,
+      "budget": 1500
+    },
+    {
+      "k": "compras",
+      "v": 1269.05,
+      "budget": 1200
+    },
+    {
+      "k": "transporte",
+      "v": 892.5,
+      "budget": 1000
+    },
+    {
+      "k": "lazer",
+      "v": 736.9,
+      "budget": 800
+    },
+    {
+      "k": "saude",
+      "v": 540,
+      "budget": 600
+    },
+    {
+      "k": "assinaturas",
+      "v": 289.7,
+      "budget": 300
+    }
+  ],
+  "cashflow": [
+    {
+      "m": "Mai",
+      "inc": 11800,
+      "exp": 8420
+    },
+    {
+      "m": "Jun",
+      "inc": 11800,
+      "exp": 7950
+    },
+    {
+      "m": "Jul",
+      "inc": 12100,
+      "exp": 9130
+    },
+    {
+      "m": "Ago",
+      "inc": 12100,
+      "exp": 8240
+    },
+    {
+      "m": "Set",
+      "inc": 12100,
+      "exp": 8710
+    },
+    {
+      "m": "Out",
+      "inc": 12400,
+      "exp": 7862.35
+    }
+  ],
+  "spending12": [
+    7340,
+    7810,
+    8120,
+    7590,
+    8020,
+    8460,
+    8420,
+    7950,
+    9130,
+    8240,
+    8710,
+    7862
+  ],
+  "months12": [
+    "Nov",
+    "Dez",
+    "Jan",
+    "Fev",
+    "Mar",
+    "Abr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Set",
+    "Out"
+  ],
+  "transactions": [
+    {
+      "d": "iFood",
+      "s": "Cartão Nubank •• 4821",
+      "cat": "alimentacao",
+      "acc": "Nubank",
+      "date": "05 out",
+      "v": -68.9,
+      "auto": true
+    },
+    {
+      "d": "Salário — Empresa XYZ",
+      "s": "Transferência recebida",
+      "cat": "receita",
+      "acc": "Itaú",
+      "date": "05 out",
+      "v": 9200,
+      "auto": true
+    },
+    {
+      "d": "Uber",
+      "s": "Cartão Itaú •• 7310",
+      "cat": "transporte",
+      "acc": "Itaú",
+      "date": "04 out",
+      "v": -32.45,
+      "auto": true
+    },
+    {
+      "d": "Pão de Açúcar",
+      "s": "Cartão Nubank •• 4821",
+      "cat": "alimentacao",
+      "acc": "Nubank",
+      "date": "04 out",
+      "v": -412.3,
+      "auto": true
+    },
+    {
+      "d": "Netflix",
+      "s": "Assinatura mensal",
+      "cat": "assinaturas",
+      "acc": "Nubank",
+      "date": "03 out",
+      "v": -55.9,
+      "auto": true
+    },
+    {
+      "d": "Aluguel — Out/26",
+      "s": "Pix agendado",
+      "cat": "moradia",
+      "acc": "Itaú",
+      "date": "03 out",
+      "v": -2450,
+      "auto": false
+    },
+    {
+      "d": "Drogasil",
+      "s": "Cartão Inter •• 0954",
+      "cat": "saude",
+      "acc": "Inter",
+      "date": "02 out",
+      "v": -86.4,
+      "auto": true
+    },
+    {
+      "d": "Pix — Loja Centro",
+      "s": "Pix enviado",
+      "cat": "outros",
+      "acc": "Inter",
+      "date": "02 out",
+      "v": -140,
+      "auto": false
+    },
+    {
+      "d": "Freelance — Landing page",
+      "s": "Pix recebido",
+      "cat": "receita",
+      "acc": "Nubank",
+      "date": "01 out",
+      "v": 3200,
+      "auto": true
+    },
+    {
+      "d": "Renner",
+      "s": "Cartão Itaú •• 7310",
+      "cat": "compras",
+      "acc": "Itaú",
+      "date": "01 out",
+      "v": -289.9,
+      "auto": true
+    }
+  ],
+  "bills": [
+    {
+      "d": "Aluguel",
+      "day": 3,
+      "v": 2450,
+      "st": "paid",
+      "ic": "house",
+      "acc": "Itaú"
+    },
+    {
+      "d": "Fatura Inter",
+      "day": 10,
+      "v": 412,
+      "st": "due",
+      "ic": "credit-card",
+      "acc": "Inter"
+    },
+    {
+      "d": "Energia — Equatorial",
+      "day": 12,
+      "v": 238.7,
+      "st": "due",
+      "ic": "zap",
+      "acc": "Nubank"
+    },
+    {
+      "d": "Fatura Nubank",
+      "day": 15,
+      "v": 2184.9,
+      "st": "due",
+      "ic": "credit-card",
+      "acc": "Nubank"
+    },
+    {
+      "d": "Internet fibra",
+      "day": 15,
+      "v": 129.9,
+      "st": "due",
+      "ic": "wifi",
+      "acc": "Itaú"
+    },
+    {
+      "d": "Fatura Itaú",
+      "day": 20,
+      "v": 1326.4,
+      "st": "due",
+      "ic": "credit-card",
+      "acc": "Itaú"
+    },
+    {
+      "d": "Academia",
+      "day": 25,
+      "v": 139.9,
+      "st": "due",
+      "ic": "heart-pulse",
+      "acc": "Nubank"
+    }
+  ],
+  "receivables": [
+    {
+      "d": "Salário",
+      "day": 5,
+      "v": 9200,
+      "st": "received"
+    },
+    {
+      "d": "Freelance — App",
+      "day": 28,
+      "v": 3200,
+      "st": "expected"
+    }
+  ],
+  "today": 6,
+  "categoriesMeta": {
+    "moradia": {
+      "n": "Moradia",
+      "ic": "house"
+    },
+    "alimentacao": {
+      "n": "Alimentação",
+      "ic": "utensils"
+    },
+    "transporte": {
+      "n": "Transporte",
+      "ic": "car"
+    },
+    "compras": {
+      "n": "Compras",
+      "ic": "shopping-bag"
+    },
+    "lazer": {
+      "n": "Lazer",
+      "ic": "gamepad-2"
+    },
+    "saude": {
+      "n": "Saúde",
+      "ic": "heart-pulse"
+    },
+    "assinaturas": {
+      "n": "Assinaturas",
+      "ic": "tv"
+    },
+    "receita": {
+      "n": "Receita",
+      "ic": "arrow-down-left"
+    },
+    "outros": {
+      "n": "Sem categoria",
+      "ic": "tags"
+    }
+  },
+  "banks": {
+    "nubank": {
+      "n": "Nubank",
+      "i": "Nu",
+      "bg": "#820AD1"
+    },
+    "itau": {
+      "n": "Itaú",
+      "i": "It",
+      "bg": "#EC7000"
+    },
+    "inter": {
+      "n": "Inter",
+      "i": "In",
+      "bg": "#FF7A00"
+    },
+    "bradesco": {
+      "n": "Bradesco",
+      "i": "Br",
+      "bg": "#CC092F"
+    },
+    "bb": {
+      "n": "Banco do Brasil",
+      "i": "BB",
+      "bg": "#F8D117",
+      "fg": "#0A0A0A"
+    },
+    "santander": {
+      "n": "Santander",
+      "i": "Sa",
+      "bg": "#EC0000"
+    },
+    "caixa": {
+      "n": "Caixa",
+      "i": "Cx",
+      "bg": "#005CA9"
+    },
+    "c6": {
+      "n": "C6 Bank",
+      "i": "C6",
+      "bg": "#242424"
+    },
+    "btg": {
+      "n": "BTG Pactual",
+      "i": "BT",
+      "bg": "#0B2D5B"
+    },
+    "picpay": {
+      "n": "PicPay",
+      "i": "PP",
+      "bg": "#21C25E"
+    }
+  },
+  "note": "Valores em reais (float) apenas no mock; no app converta para centavos (Int). Datas: outubro/2026, hoje = 06/10/2026."
+}
