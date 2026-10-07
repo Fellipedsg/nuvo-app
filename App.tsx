@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Platform, View, useWindowDimensions } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
@@ -16,6 +16,7 @@ import { FaceCapture, FaceFail, FaceIdSetup, FaceIntro } from "./src/face";
 import { CreatePin, Forgot, Locked, Login, PinLogin, QuickFace, ResetCode, ResetDone, ResetNew, Splash, TwoFactor } from "./src/access";
 import { Ctx, Route, routeForStep } from "./src/flowtypes";
 import { TabBar, Tab } from "./src/ui";
+import { ScreenTransition, EnterFromBottom } from "./src/transition";
 import { AppWidth, c, data, setData, Tx } from "./src/theme";
 import { auth, createTransaction, fetchOverview, setToken, Step } from "./src/api";
 import { clearToken, flow, loadRemembered, loadToken, Remembered, saveRemembered, saveToken } from "./src/session";
@@ -33,6 +34,10 @@ function Shell() {
   const [revoked, setRevoked] = useState({ count: 0, devices: [] as string[] });
   const [, bump] = useState(0);
   const route = stack[stack.length - 1];
+  // forward when a screen was pushed, back when popped, fade-only when the stack was replaced.
+  const prevStack = useRef<Route[]>(stack);
+  const dir: -1 | 0 | 1 = stack.length > prevStack.current.length ? 1 : stack.length < prevStack.current.length ? -1 : 0;
+  useEffect(() => { prevStack.current = stack; });
 
   const go = (r: Route) => setStack((s) => [...s, r]);
   const back = () => setStack((s) => (s.length > 1 ? s.slice(0, -1) : s));
@@ -117,12 +122,12 @@ function Shell() {
   return (
     <View style={{ flex: 1, backgroundColor: dark ? "#050505" : c.white, paddingTop: insets.top, paddingBottom: mainScreen ? 0 : insets.bottom }}>
       <StatusBar style={dark || route === "faceCapture" ? "light" : "dark"} />
-      {body}
+      <ScreenTransition routeKey={route} dir={dir}>{body}</ScreenTransition>
       {mainScreen && <TabBar active={TABS.includes(route as Tab) ? (route as Tab) : undefined} bottom={insets.bottom} onAdd={() => setNewTx(true)} onTab={(t) => reset(t)} />}
       {newTx && (
-        <View style={{ position: "absolute", inset: 0, backgroundColor: c.white, paddingTop: insets.top, paddingBottom: insets.bottom }}>
+        <EnterFromBottom style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: c.white, paddingTop: insets.top, paddingBottom: insets.bottom }}>
           <NewTx onClose={() => setNewTx(false)} onSave={async (b) => { await createTransaction(b); await reload(); setNewTx(false); }} />
-        </View>
+        </EnterFromBottom>
       )}
     </View>
   );
