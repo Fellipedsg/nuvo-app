@@ -1,8 +1,9 @@
-import { Dimensions, Platform } from "react-native";
+import { createContext, useContext } from "react";
 import mock from "../mock.json";
 
-/** Usable app width: on wide web screens the app is framed as a 402pt phone (see App.tsx). */
-export const SCREEN_W = (() => { const w = Dimensions.get("window").width; return Platform.OS === "web" && w > 500 ? 402 : w; })();
+/** Width the app is laid out in. On wide web screens the app is framed as a phone (see App.tsx). */
+export const AppWidth = createContext(402);
+export const useAppWidth = () => useContext(AppWidth);
 
 export const c = {
   ink: "#0A0A0A", ink2: "#3A3A3A", muted: "#6B6B6B", subtle: "#A9A9A9", gray: "#CECECE",

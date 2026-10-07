@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Platform, View, useWindowDimensions } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
@@ -16,7 +16,7 @@ import { FaceCapture, FaceFail, FaceIdSetup, FaceIntro } from "./src/face";
 import { CreatePin, Forgot, Locked, Login, PinLogin, QuickFace, ResetCode, ResetDone, ResetNew, Splash, TwoFactor } from "./src/access";
 import { Ctx, Route, routeForStep } from "./src/flowtypes";
 import { TabBar, Tab } from "./src/ui";
-import { c, data, setData, Tx } from "./src/theme";
+import { AppWidth, c, data, setData, Tx } from "./src/theme";
 import { auth, createTransaction, fetchOverview, setToken, Step } from "./src/api";
 import { clearToken, flow, loadRemembered, loadToken, Remembered, saveRemembered, saveToken } from "./src/session";
 
@@ -78,6 +78,10 @@ function Shell() {
 
   const mainScreen = MAIN.includes(route);
   const dark = DARK.includes(route);
+  // Web: tint the browser/status bar to match the current screen.
+  useEffect(() => {
+    if (Platform.OS === "web") document.querySelector('meta[name="theme-color"]')?.setAttribute("content", dark ? "#050505" : "#FFFFFF");
+  }, [dark]);
   let body;
   switch (route) {
     case "splash": body = <Splash onDone={boot} />; break;
@@ -128,15 +132,21 @@ export default function App() {
   const [ok] = useFonts({ Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold });
   const { width, height } = useWindowDimensions();
   if (!ok) return null;
-  // Web demo: render the phone layout centered on wide screens.
-  const framed = Platform.OS === "web" && width > 500;
+  // Native and phones: fill the screen. Wide web screens: phone-sized frame (tablet/desktop) or a centered column (landscape phone).
+  const web = Platform.OS === "web";
+  const framed = web && width > 500 && height >= 600;
+  const column = web && width > 500 && !framed;
+  const appW = framed ? 402 : column ? Math.min(width, 480) : width;
+  const fullHeight = web ? ({ height: "100dvh" } as object) : { height: "100%" as const };
   return (
     <SafeAreaProvider>
-      <View style={{ flex: 1, backgroundColor: framed ? "#E5E5E5" : "#FFFFFF", alignItems: "center", justifyContent: "center" }}>
-        <View style={{ width: framed ? 402 : "100%", height: framed ? Math.min(height - 32, 874) : "100%", borderRadius: framed ? 36 : 0, overflow: "hidden", backgroundColor: "#FFFFFF" }}>
-          <Shell />
+      <AppWidth.Provider value={appW}>
+        <View style={[{ width: "100%", backgroundColor: framed || column ? "#E5E5E5" : "#FFFFFF", alignItems: "center", justifyContent: "center" }, fullHeight]}>
+          <View style={{ width: appW, height: framed ? Math.min(height - 32, 874) : "100%", borderRadius: framed ? 36 : 0, overflow: "hidden", backgroundColor: "#FFFFFF" }}>
+            <Shell />
+          </View>
         </View>
-      </View>
+      </AppWidth.Provider>
     </SafeAreaProvider>
   );
 }

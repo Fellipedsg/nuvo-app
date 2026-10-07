@@ -1,16 +1,16 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NativeScrollEvent, NativeSyntheticEvent, Pressable, ScrollView, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Svg, { Circle } from "react-native-svg";
 import { Bell, Sparkles, Utensils } from "lucide-react-native";
 import { CardVisual } from "./card";
 import { Button, T } from "./ui";
-import { brl, c, data, SCREEN_W } from "./theme";
+import { brl, c, data, useAppWidth } from "./theme";
 
-const W = SCREEN_W;
 const ART_H = 380;
 
 function Slide1() {
+  const W = useAppWidth();
   return (
     <View style={{ width: W, height: ART_H, paddingHorizontal: 24 }}>
       <CardVisual theme="silver" label="Fatura atual" value={brl(data.cards[2].invoice)} height={170} style={{ position: "absolute", top: 0, left: 70, right: 24 }} />
@@ -23,6 +23,7 @@ function Slide1() {
 const SEG = [0.31, 0.21, 0.16, 0.11, 0.09, 0.07, 0.04];
 const SEG_COL = ["#FFFFFF", "#CECECE", "#A9A9A9", "#8F8F8F", "#6B6B6B", "#4A4A4A", "#333333"];
 function Slide2() {
+  const W = useAppWidth();
   const R = 66, C = 2 * Math.PI * R;
   let acc = 0;
   return (
@@ -51,6 +52,7 @@ function Slide2() {
 }
 
 function Slide3() {
+  const W = useAppWidth();
   const rows = [["10", "Fatura Inter", "em 4 dias", "R$ 412,00", true], ["12", "Energia", "em 6 dias", "R$ 238,70", false], ["15", "Fatura Nubank", "em 9 dias", "R$ 2.184,90", false], ["20", "Fatura Itaú", "em 14 dias", "R$ 1.326,40", false]] as const;
   return (
     <View style={{ width: W, height: ART_H, paddingHorizontal: 24 }}>
@@ -82,9 +84,11 @@ const COPY = [
 
 /** 3 slides (A02/A03 are slides 2 and 3 of the existing M01). Swipe or tap "Próximo". */
 export function OnboardingPager({ onCreate, onLogin }: { onCreate: () => void; onLogin: () => void }) {
+  const W = useAppWidth();
   const [page, setPage] = useState(0);
   const sv = useRef<ScrollView>(null);
   const onEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => setPage(Math.round(e.nativeEvent.contentOffset.x / W));
+  useEffect(() => { sv.current?.scrollTo({ x: page * W, animated: false }); }, [W]); // eslint-disable-line react-hooks/exhaustive-deps
   const goTo = (p: number) => { sv.current?.scrollTo({ x: p * W, animated: true }); setPage(p); };
   return (
     <LinearGradient colors={["#161616", "#050505"]} style={[{ flex: 1 }, { userSelect: "none" } as object]}>

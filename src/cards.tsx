@@ -3,12 +3,10 @@ import { NativeScrollEvent, NativeSyntheticEvent, Pressable, ScrollView, View } 
 import { FileText, Snowflake } from "lucide-react-native";
 import { CardVisual, CardTheme } from "./card";
 import { AddBtn, Back, Button, SectionHeader, T, TxRow } from "./ui";
-import { brl, c, data, SCREEN_W, Tx } from "./theme";
-
-const W = SCREEN_W;
-const CW = W - 48 - 16; // card width leaves a peek of the next card
+import { brl, c, data, Tx, useAppWidth } from "./theme";
 
 export function Cards({ onBack, txs, onAdd }: { onBack: () => void; txs: Tx[]; onAdd: () => void }) {
+  const CW = useAppWidth() - 48 - 16; // card width leaves a peek of the next card
   const [i, setI] = useState(0);
   const sv = useRef<ScrollView>(null);
   const [blocked, setBlocked] = useState<Record<number, boolean>>({});
